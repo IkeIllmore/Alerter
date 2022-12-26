@@ -1,6 +1,6 @@
 # Alerter
 
-## DESCRIPTION
+## Description
 
 Alerter is a LOTRO Lua plugin, written by Garan, that allows you to set specific phrases to watch for in specific chat channels and if any match occurs in a specified channel, a message is displayed prominently on your screen.
 
@@ -75,3 +75,70 @@ Test Button: This button will allow you to test the Response settings and the Cu
 Show Log Button: This displays the chat log window. This window can be handy to determine the correct channel and exact underlying chat text for a message you wish to use as a trigger.
 
 Delete Button: Again, pretty self-explanatory, clicking this button deletes the alert definition.
+
+## Version History
+
+### Version 1.08
+Added custom Lua code snippets for Trigger and Response. The Trigger snippet can be used to provide custom filtering of alerts while the Response snippet can be used to define additional response capabilities or alter the existing responses.
+To learn more about the code snippets and their capabilites, read the ReadMe.txt file.
+Changed "Show Log" Button to "Show Chat Log" to reflect that it is a log of incomming Chat messages
+Changed "Add to Custom Log" Checkbox to "Add to Alert Log" and added "Show Alert Log" Button to view the log of alerts.
+Added Log Viewer window. This window will display the history of alerts that had the "Add to Alert Log" check box checked during a specific session. I recommend not logging alerts unless you are trying to debug something as the log viewer doesn't handle large tables very well. However, it does have a couple of handy features:
+  You can left drag column headings to reorder the columns, you can left drag the header separators to resize columns and you can right click the header to check/uncheck columns to be displayed
+  You can control the size of the text in the grid by selecting a font and size by clicking the font select button in the upper right corner. You can also increase/decrease the font by simply holding Ctrl and scrolling your mouse wheel while over the grid - note, the font change can take a second or two for large tables so it is best to select a font while reviewing a session with fewer alerts to find a font that is comfortable.
+  The Response column is the actual text displayed by the Alert while the Message column is the original text from the incomming Chat message that triggered the alert.
+
+### Version 1.07
+Restored Shared alerts and Custom Logs that were accidentally removed in 1.06
+Added "message" to Custom Logs.
+Note, Custom Logs are log files per client session that are stored at the account level, in the AllServers folder, as "Alerter_Log_YYYYMMDD_HHMMSS.plugindata" where YYYYMMDD is Year, Month and Day and HHMMSS is Hours, Minutes and Seconds. A log viewer is planned for a future version.
+
+### Version 1.06
+Added "World" chat channel
+Added support for Emote, Pet and Hobby quickslots in Responses
+Changed default behavior of quickslots to display for Duration and added option to "Hide after Clicked"
+
+### Version 1.05
+Fixed alert position bug for alerts using Mouse Position and a Delay time.
+Fixed bug that could generate an error when displaying the "Alert Saved" or "Alert Deleted" message.
+Fixed bug in language selection not immediately updating State radio button labels and selection list labels.
+
+### Version 1.04
+Added separate tabs for Trigger settings and Result settings to help group settings and clean up the cluttered interface
+Updated the DE and FR support. The whole interface should now support both German and French (although some translations may still be a bit literal).
+Changed channel select boxes to automatically reorder alphabetically when language changes.
+Added the new channels from Update 6 (Combat - Player and Combat - Enemy).
+Changed Item quickslots to accept item instance IDs instead of generic IDs (the first part of the ID should not be 0). Use drag & drop to generate the ID. Note, for items with more than one stack, only the stack that is actually dragged to the control will work.
+Implemented permanent fix for the version 1.03 infinite loop bug caused by ExaminationItemID tags containing byte data.
+Added Delay setting for alerts - you can now trigger an alert to go off x number of seconds after the chat message which is great for knowing when to refresh certain skills, etc.
+Added States (currently only "In Combat" and "Out of Combat") for triggers. You can choose to delay an alert until the state is no longer true or suppress he alert all together. This way you won't be bothered by social alerts while in combat (but you can choose to have them pop up once combat ends), etc.
+Fixed a bug that could allow an alert Quickslot to continue to display even after the alert duration had expired.
+
+### Version 1.03
+Modified Alerts so that more than one alert can be active simultaneously - alerts no longer override each other.
+Added limits to the alert template when resizing with the mouse - you can still override the limits by manually entering lower values.
+Re-added the Opacity slider
+Added tinting to areas of the setup panel to indicate related fields and help a little with the clutter
+Added Quickslot controls to alerts - these let you click on the alert to execute an alias, perform a skill or use an item
+Added an option to display alert at the mouse position, overriding the Top and Left coordinates (mostly useful for Quickslot alerts)
+Added an option to scroll the text vertically upwards within the defined alert box - the scroll rate is controlled by the duration
+
+### Version 1.02
+Added Cooldown setting to alerts - allows setting a minimum time between alerts for the same trigger.
+Added a graphical frame which is visible when the setup window is visible for graphically moving/resizing the alert panel in addition to left, top, width and height fields that can be manually entered.
+Added the ability to use a graphic image with alerts. Save the image in the GaranStuff/Alerter/Resources folder and then just enter the image file name (without path). Alternately, you can use any of the built in resource IDs.
+Added a chat log which displays the chat channel, sender and message arguments for the last 1000 incomming chat messages.
+Altered the way that channels are selected - you will need to redefine any previously created alerts by reselecting the channels and resaving.
+Added a "Custom" channel to allow users to match agains any previously undefined channel that they find in the log. Undefined channels will show up as a number, enter that number in the Custom Channel field. Note, undefined channels will still be matched by the "Any" channel category.
+Added the ability to use "captures" in the Pattern which can be reproduced in the alert Message by inserting a %number where "number" is the iteration of the capture.
+note that the captures do not need to be reproduced in the order in which they were captured, that is %2 can preceed %1 in the Message.
+When creating patterns, note that the incomming message may not be quite what you expect, the built in chat window processes some of the text before adding it to the chat display. For instance, "Tells" do not include the sender's name or the words "tells you," in the message, those are added by the chat window.
+The Message field can contain three special fields, %C for the Channel and %S for the Sender and %M for the original Message.
+Added a chat command to Start, Stop and Show the Chat Log - "/Alerter Log Start","/Alerter Log Stop","/Alerter Log Show"
+Added an "Enabled" checkbox. Clear this to temporarily disable an alert without having to delete the alert definition.
+
+### Version 1.01
+Added a Delete button
+Added French and German translations for most of the interface, Chat channels are not yet translated
+Fixed incorrect label for the Font selection list
+Fixed the mouse click-though bug (reported by Eldarian on LoTROInterface).
