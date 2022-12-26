@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<Plugin>
+	<Information>
+		<Name>Alerter</Name>
+		<Author>Garan</Author>
+		<Version>1.08</Version>
+		<Description>This Plugin allows players to display alerts for incomming text messages.</Description>
+		<Image>GaranStuff/Alerter/Resources/Exclamation.tga</Image>
+	</Information>
+	<Package>GaranStuff.Alerter.Main</Package>
+</Plugin>
