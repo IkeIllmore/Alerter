@@ -3,7 +3,7 @@
 	<Information>
 		<Name>Alerter</Name>
 		<Author>Garan</Author>
-		<Version>1.08</Version>
+		<Version>1.09</Version>
 		<Description>This Plugin allows players to display alerts for incomming text messages.</Description>
 		<Image>GaranStuff/Alerter/Resources/Exclamation.tga</Image>
 	</Information>

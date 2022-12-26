@@ -768,6 +768,7 @@ milliSecond=math.floor((milliSecond-math.floor(milliSecond))*1000)/1000;
 		else
 			if self.State==1 then
 				if time>=self.EndTime then
+					-- message time expired
 					self:SetWantsUpdates(false);
 					self.Image:SetVisible(false);
 					self.Message:SetVisible(false);
@@ -777,9 +778,12 @@ milliSecond=math.floor((milliSecond-math.floor(milliSecond))*1000)/1000;
 					self.Done=true;
 					alertMain:SetWantsUpdates(true);
 				elseif time>=self.FlashTime then
+					-- flash time expired - toggle message state
 					self.Image:SetVisible(not self.Image:IsVisible());
-					self.Message:SetVisible(not self.Message:IsVisible());
+					self.Message:SetVisible(not self.Message:IsVisible() and alertHUDState);
 					self.FlashTime=Turbine.Engine.GetGameTime()+self.Interval/2;
+				else
+					self.Message:SetVisible(alertHUDState); -- Hide UI Hide Alert Mod
 				end
 			else
 				local state=GetAlertState(self.Index);

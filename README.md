@@ -78,6 +78,9 @@ Delete Button: Again, pretty self-explanatory, clicking this button deletes the 
 
 ## Version History
 
+### Version 1.09
+Bug fix so when hide the UI with the F12 key then the alert text is hidden.
+
 ### Version 1.08
 Added custom Lua code snippets for Trigger and Response. The Trigger snippet can be used to provide custom filtering of alerts while the Response snippet can be used to define additional response capabilities or alter the existing responses.
 To learn more about the code snippets and their capabilites, read the ReadMe.txt file.
